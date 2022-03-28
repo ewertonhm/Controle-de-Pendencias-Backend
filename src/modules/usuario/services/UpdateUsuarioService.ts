@@ -4,6 +4,7 @@ import Usuario from '../typeorm/entities/Usuario';
 import { UsuarioRepository } from '../typeorm/repositories/UsuarioRepository';
 
 interface IRequest {
+    id: string;
     nome: string;
     sobrenome: string;
     email: string;
@@ -14,8 +15,9 @@ interface IRequest {
     id_bitrix: number;
 }
 
-class CreateUsuarioService {
+class UpdateUsuarioService {
     public async execute({
+        id,
         nome,
         sobrenome,
         email,
@@ -26,22 +28,26 @@ class CreateUsuarioService {
         id_bitrix,
     }: IRequest): Promise<Usuario> {
         const usuarioRepository = getCustomRepository(UsuarioRepository);
+
+        const usuario = await usuarioRepository.findOne(id);
         const usuarioExists = await usuarioRepository.findByEmail(email);
 
-        if (usuarioExists) {
+        if (!usuario) {
+            throw new AppError('Usuario não encontrado.');
+        }
+
+        if (usuarioExists && email != usuario.email) {
             throw new AppError('Email já está em uso!');
         }
 
-        const usuario = usuarioRepository.create({
-            nome,
-            sobrenome,
-            email,
-            senha,
-            ativo,
-            btv_usuario,
-            btv_senha,
-            id_bitrix,
-        });
+        usuario.nome = nome;
+        usuario.sobrenome = sobrenome;
+        usuario.email = email;
+        usuario.senha = senha;
+        usuario.ativo = ativo;
+        usuario.btv_senha = btv_senha;
+        usuario.btv_usuario = btv_usuario;
+        usuario.id_bitrix = id_bitrix;
 
         await usuarioRepository.save(usuario);
 
@@ -49,4 +55,4 @@ class CreateUsuarioService {
     }
 }
 
-export default CreateUsuarioService;
+export default UpdateUsuarioService;
