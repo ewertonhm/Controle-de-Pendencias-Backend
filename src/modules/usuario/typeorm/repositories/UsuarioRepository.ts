@@ -7,7 +7,7 @@ export class UsuarioRepository extends Repository<Usuario> {
         nome: string,
         sobrenome: string,
     ): Promise<Usuario | undefined> {
-        const usuario = this.findOne({
+        const usuario = await this.findOne({
             where: {
                 nome,
                 sobrenome,
@@ -16,11 +16,21 @@ export class UsuarioRepository extends Repository<Usuario> {
         return usuario;
     }
     public async findByEmail(email: string): Promise<Usuario | undefined> {
-        const usuario = this.findOne({
+        const usuario = await this.findOne({
             where: {
                 email,
             },
         });
+        return usuario;
+    }
+
+    public async fundById(id: string): Promise<Usuario | undefined> {
+        const usuario = await this.findOne({
+            where: {
+                id,
+            },
+        });
+
         return usuario;
     }
 }
