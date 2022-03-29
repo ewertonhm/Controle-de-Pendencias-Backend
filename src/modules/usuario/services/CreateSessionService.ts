@@ -5,6 +5,7 @@ import { userInfo } from 'os';
 import { getCustomRepository } from 'typeorm';
 import Usuario from '../typeorm/entities/Usuario';
 import { UsuarioRepository } from '../typeorm/repositories/UsuarioRepository';
+import authConfig from '@config/auth';
 
 interface IRequest {
     email: string;
@@ -31,9 +32,9 @@ class CreateSessionService {
             throw new AppError('Combinação de email/senha incorreto!', 401);
         }
 
-        const token = sign({}, 'fe2dfde37de2b27d961820a672ec7df6', {
+        const token = sign({}, authConfig.jwt.secret, {
             subject: usuario.id,
-            expiresIn: '1d',
+            expiresIn: authConfig.jwt.expiresIn,
         });
 
         return {
