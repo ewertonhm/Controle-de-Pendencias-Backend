@@ -8,6 +8,7 @@ import UpdateUsuarioService from '../services/UpdateUsuarioService';
 export default class UsuarioController {
     public async index(request: Request, response: Response) {
         const listUsuarios = new ListUsuarioService();
+
         const usuarios = await listUsuarios.execute();
 
         return response.json(usuarios);

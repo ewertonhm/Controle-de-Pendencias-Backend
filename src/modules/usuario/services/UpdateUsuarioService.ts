@@ -29,7 +29,7 @@ class UpdateUsuarioService {
     }: IRequest): Promise<Usuario> {
         const usuarioRepository = getCustomRepository(UsuarioRepository);
 
-        const usuario = await usuarioRepository.findOne(id);
+        const usuario = await usuarioRepository.findById(id);
         const usuarioExists = await usuarioRepository.findByEmail(email);
 
         if (!usuario) {
