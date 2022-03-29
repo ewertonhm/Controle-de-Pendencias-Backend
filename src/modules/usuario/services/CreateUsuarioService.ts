@@ -1,4 +1,5 @@
 import AppError from '@shared/errors/AppError';
+import { hash } from 'bcryptjs';
 import { getCustomRepository } from 'typeorm';
 import Usuario from '../typeorm/entities/Usuario';
 import { UsuarioRepository } from '../typeorm/repositories/UsuarioRepository';
@@ -32,11 +33,13 @@ class CreateUsuarioService {
             throw new AppError('Email já está em uso!');
         }
 
+        const hashedPassword = await hash(senha, 8);
+
         const usuario = usuarioRepository.create({
             nome,
             sobrenome,
             email,
-            senha,
+            senha: hashedPassword,
             ativo,
             btv_usuario,
             btv_senha,
