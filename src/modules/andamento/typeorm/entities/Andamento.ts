@@ -19,9 +19,15 @@ class Andamento {
     @JoinColumn({ name: 'id_pendencia' })
     pendencia: Pendencia;
 
+    @Column()
+    id_pendencia: string;
+
     @ManyToOne(() => Usuario)
     @JoinColumn({ name: 'id_usuario' })
     usuario: Usuario;
+
+    @Column()
+    id_usuario: string;
 
     @Column()
     andamento: string;

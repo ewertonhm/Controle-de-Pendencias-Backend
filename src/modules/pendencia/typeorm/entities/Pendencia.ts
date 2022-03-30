@@ -19,13 +19,22 @@ class Pendencia {
     @JoinColumn({ name: 'id_tipo_pendencia' })
     tipoPendencia: TipoPendencia;
 
+    @Column()
+    id_tipo_pendencia: string;
+
     @ManyToOne(() => Usuario)
     @JoinColumn({ name: 'id_usuario_abertura' })
     usuarioAbertura: Usuario;
 
+    @Column()
+    id_usuario_abertura: string;
+
     @ManyToOne(() => Usuario)
     @JoinColumn({ name: 'id_usuario_fechamento' })
     usuarioFechamento: Usuario;
+
+    @Column()
+    id_usuario_fechamento: string;
 
     @Column()
     titulo: string;
