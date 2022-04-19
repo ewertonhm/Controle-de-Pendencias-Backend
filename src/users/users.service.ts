@@ -4,6 +4,7 @@ import { Repository } from 'typeorm';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { User } from './entities/user.entity';
+import { hash } from 'bcrypt';
 
 @Injectable()
 export class UsersService {
@@ -17,6 +18,7 @@ export class UsersService {
     }
 
     createUserDto.ativo = true;
+    createUserDto.senha = await hash(createUserDto.senha, 8);
 
     const userCreated = await this.model.save(createUserDto);
     return userCreated;
@@ -49,7 +51,9 @@ export class UsersService {
       throw new NotAcceptableException("Email já está sendo usado!");
     }
 
-    
+    if(updateUserDto.senha){
+      updateUserDto.senha = await hash(updateUserDto.senha, 8);
+    }
 
     await this.model.update({ id }, updateUserDto);
 
