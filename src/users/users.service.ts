@@ -38,6 +38,10 @@ export class UsersService {
     return user;
   }
 
+  async findOneByEmail(email: string): Promise<User | undefined> {
+    return await this.model.findOne({ where: { email } });
+  }
+
   async update(id: string, updateUserDto: UpdateUserDto): Promise<User> {
     const user = await this.model.findOne({ where: { id } });
 
