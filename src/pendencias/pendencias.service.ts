@@ -1,4 +1,4 @@
-import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
+import { HttpException, HttpStatus, Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { TipoPendenciasService } from 'src/tipo_pendencias/tipo_pendencias.service';
 import { UsersService } from 'src/users/users.service';
@@ -17,10 +17,30 @@ export class PendenciasService {
     ) {}
 
   async create(createPendenciaDto: CreatePendenciaDto) {
-    createPendenciaDto.userAbertura = await this.usersService.findOne(createPendenciaDto.userAberturaId);
-    createPendenciaDto.userFechamento = await this.usersService.findOne(createPendenciaDto.userFechamentoId);
-    createPendenciaDto.tipoPendencia = await this.tipoPendenciasService.findOne(createPendenciaDto.tipoPendenciaId);
-  
+    if(createPendenciaDto.userAberturaId){
+      const userAbertura = await this.usersService.findOne(createPendenciaDto.userAberturaId);
+      if(!userAbertura){
+        throw new NotFoundException("userAbertura not found!");
+      }
+      createPendenciaDto.userAbertura = userAbertura;
+    }
+
+    if(createPendenciaDto.userFechamentoId){
+      const userFechamento = await this.usersService.findOne(createPendenciaDto.userFechamentoId);
+      if(!userFechamento){
+        throw new NotFoundException("userFechamento not found!");
+      }
+      createPendenciaDto.userFechamento = userFechamento;
+    }
+
+    if(createPendenciaDto.tipoPendenciaId){
+      const tipoPendencia = await this.tipoPendenciasService.findOne(createPendenciaDto.tipoPendenciaId);
+      if(!tipoPendencia){
+        throw new NotFoundException("tipoPendencia not found!");
+      }
+      createPendenciaDto.tipoPendencia = tipoPendencia;
+    }
+
     return await this.model.save(createPendenciaDto);
   }
 
@@ -61,6 +81,34 @@ export class PendenciasService {
 
   async update(id: string, updatePendenciaDto: UpdatePendenciaDto) {
     let pendencia: Pendencia = await this.findOne(id);
+
+    if(!pendencia){
+      throw new NotFoundException("Pendencia não encontrada!");
+    }
+
+    if(updatePendenciaDto.userAberturaId){
+      const userAbertura = await this.usersService.findOne(updatePendenciaDto.userAberturaId);
+      if(!userAbertura){
+        throw new NotFoundException("userAbertura not found!");
+      }
+      updatePendenciaDto.userAbertura = userAbertura;
+    }
+
+    if(updatePendenciaDto.userFechamentoId){
+      const userFechamento = await this.usersService.findOne(updatePendenciaDto.userFechamentoId);
+      if(!userFechamento){
+        throw new NotFoundException("userFechamento not found!");
+      }
+      updatePendenciaDto.userFechamento = userFechamento;
+    }
+
+    if(updatePendenciaDto.tipoPendenciaId){
+      const tipoPendencia = await this.tipoPendenciasService.findOne(updatePendenciaDto.tipoPendenciaId);
+      if(!tipoPendencia){
+        throw new NotFoundException("tipoPendencia not found!");
+      }
+      updatePendenciaDto.tipoPendencia = tipoPendencia;
+    }
 
     updatePendenciaDto.userFechamento = await this.usersService.findOne(updatePendenciaDto.userFechamentoId);
 
