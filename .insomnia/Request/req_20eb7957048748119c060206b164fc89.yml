@@ -1,0 +1,21 @@
+_id: req_20eb7957048748119c060206b164fc89
+type: Request
+parentId: fld_4a5a43db38f94185b00d19e6ac58e8c5
+modified: 1650477130319
+created: 1650477034859
+url: "{{ _.base_url }}/pendencias"
+name: LIST
+description: ""
+method: GET
+body: {}
+parameters: []
+headers: []
+authentication: {}
+metaSortKey: -1650477034859
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

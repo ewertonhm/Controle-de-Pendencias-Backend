@@ -1,0 +1,23 @@
+_id: req_2a9dc6cfb52a45fea26e147eb3f13d01
+type: Request
+parentId: fld_0c611d1439434fe3aa4f0d8c38dc507d
+modified: 1650472645016
+created: 1648555797214
+url: "{{ _.base_url }}/users/3014667f-c931-491a-a483-03188681b9d5"
+name: DISABLE
+description: ""
+method: DELETE
+body: {}
+parameters: []
+headers: []
+authentication:
+  type: bearer
+  token: "{{ _.token }}"
+metaSortKey: -1648555231625.5
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

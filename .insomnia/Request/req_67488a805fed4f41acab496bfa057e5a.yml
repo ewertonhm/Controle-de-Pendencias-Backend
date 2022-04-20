@@ -1,0 +1,32 @@
+_id: req_67488a805fed4f41acab496bfa057e5a
+type: Request
+parentId: fld_c4cbcd93aace4b6592364f6143cda053
+modified: 1650393446180
+created: 1648581331210
+url: "{{ _.base_url }}/tipo-pendencias"
+name: CREATE
+description: ""
+method: POST
+body:
+  mimeType: application/json
+  text: |-
+    {
+    	"tipo": "Rompimento1",
+    	"severidade": 0
+    }
+parameters: []
+headers:
+  - name: Content-Type
+    value: application/json
+    id: pair_266d95b8b1504202a4fbe4d9e12f01f0
+authentication:
+  type: bearer
+  token: "{{ _.token }}"
+metaSortKey: -1648555231613
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

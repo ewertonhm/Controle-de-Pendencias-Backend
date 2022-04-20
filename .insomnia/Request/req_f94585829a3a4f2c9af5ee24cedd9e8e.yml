@@ -1,0 +1,26 @@
+_id: req_f94585829a3a4f2c9af5ee24cedd9e8e
+type: Request
+parentId: fld_4a5a43db38f94185b00d19e6ac58e8c5
+modified: 1650477171828
+created: 1650477055943
+url: "{{ _.base_url }}/pendencias/{% uuid 'v1' %}"
+name: UPDATE
+description: ""
+method: PATCH
+body:
+  mimeType: application/json
+  text: ""
+parameters: []
+headers:
+  - name: Content-Type
+    value: application/json
+    id: pair_9cd2bc854ca1499aad4a701113136f70
+authentication: {}
+metaSortKey: -1650477055943
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

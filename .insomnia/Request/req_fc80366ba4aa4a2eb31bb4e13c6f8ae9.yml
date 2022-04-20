@@ -1,0 +1,21 @@
+_id: req_fc80366ba4aa4a2eb31bb4e13c6f8ae9
+type: Request
+parentId: fld_8cd501d99ec24be59d5c8fe42345febc
+modified: 1650477210026
+created: 1650477077552
+url: "{{ _.base_url }}/andamentos"
+name: LIST
+description: ""
+method: GET
+body: {}
+parameters: []
+headers: []
+authentication: {}
+metaSortKey: -1650477077552
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

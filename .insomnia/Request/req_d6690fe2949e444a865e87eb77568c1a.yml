@@ -1,0 +1,21 @@
+_id: req_d6690fe2949e444a865e87eb77568c1a
+type: Request
+parentId: fld_4a5a43db38f94185b00d19e6ac58e8c5
+modified: 1650477269521
+created: 1650477062999
+url: "{{ _.base_url }}/pendencias/{% uuid 'v4' %}"
+name: DELETE
+description: ""
+method: DELETE
+body: {}
+parameters: []
+headers: []
+authentication: {}
+metaSortKey: -1650477062999
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

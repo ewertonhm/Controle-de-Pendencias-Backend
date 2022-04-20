@@ -1,0 +1,23 @@
+_id: req_7f784bdeb5544a0e8a22ff6f715caa28
+type: Request
+parentId: fld_c4cbcd93aace4b6592364f6143cda053
+modified: 1650393106372
+created: 1648581331225
+url: "{{ _.base_url }}/tipo-pendencias/b5f05717-e939-4cc4-bed2-37d11ce2f49b"
+name: FIND_ONE
+description: ""
+method: GET
+body: {}
+parameters: []
+headers: []
+authentication:
+  type: bearer
+  token: "{{ _.token }}"
+metaSortKey: -1648555231638
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

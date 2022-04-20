@@ -1,0 +1,33 @@
+_id: req_f67b15fa22be4fc089a221c1b7889b74
+type: Request
+parentId: fld_0c611d1439434fe3aa4f0d8c38dc507d
+modified: 1650477111997
+created: 1648561387724
+url: "{{ _.base_url }}/users/login"
+name: LOGIN
+description: ""
+method: POST
+body:
+  mimeType: application/json
+  text: |-
+    {
+    		"email": "ewerton.marschalk@redeunifique.com.br",
+    		"senha": "123mudar*"
+    }
+parameters: []
+headers:
+  - name: Content-Type
+    value: application/json
+    id: pair_972667731d484dd5916196c58dc1f1d5
+authentication:
+  type: bearer
+  token: "{{ _.token }}"
+  disabled: true
+metaSortKey: -1648555231713
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

@@ -1,0 +1,32 @@
+_id: req_a5be57d1f9b14f7aa7a6b6e1aa049830
+type: Request
+parentId: fld_c4cbcd93aace4b6592364f6143cda053
+modified: 1650394820751
+created: 1648581331232
+url: "{{ _.base_url }}/tipo-pendencias/b5f05717-e939-4cc4-bed2-37d11ce2f49b"
+name: UPDATE
+description: ""
+method: PATCH
+body:
+  mimeType: application/json
+  text: |-
+    {
+    	"tipo": "Rompimento",
+    	"severidade": 7
+    }
+parameters: []
+headers:
+  - name: Content-Type
+    value: application/json
+    id: pair_266d95b8b1504202a4fbe4d9e12f01f0
+authentication:
+  type: bearer
+  token: "{{ _.token }}"
+metaSortKey: -1648555231563
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

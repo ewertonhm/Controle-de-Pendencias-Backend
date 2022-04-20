@@ -1,0 +1,21 @@
+_id: req_21d0385cd7684a89aed9bf6f641ab724
+type: Request
+parentId: fld_8cd501d99ec24be59d5c8fe42345febc
+modified: 1650477222526
+created: 1650477082608
+url: "{{ _.base_url }}/andamentos/{% uuid 'v1' %}"
+name: FIND_ONE
+description: ""
+method: GET
+body: {}
+parameters: []
+headers: []
+authentication: {}
+metaSortKey: -1650477082608
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

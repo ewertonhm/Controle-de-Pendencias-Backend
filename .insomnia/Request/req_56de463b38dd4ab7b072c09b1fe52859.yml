@@ -1,0 +1,24 @@
+_id: req_56de463b38dd4ab7b072c09b1fe52859
+type: Request
+parentId: fld_c4cbcd93aace4b6592364f6143cda053
+modified: 1650476992762
+created: 1648581331219
+url: "{{ _.base_url }}/tipo-pendencias/"
+name: LIST
+description: ""
+method: GET
+body: {}
+parameters: []
+headers: []
+authentication:
+  type: bearer
+  token: "{{ _.token }}"
+  disabled: false
+metaSortKey: -1648555231663
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

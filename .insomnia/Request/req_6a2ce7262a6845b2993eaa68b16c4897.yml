@@ -1,0 +1,23 @@
+_id: req_6a2ce7262a6845b2993eaa68b16c4897
+type: Request
+parentId: fld_c4cbcd93aace4b6592364f6143cda053
+modified: 1650393460781
+created: 1648581331238
+url: "{{ _.base_url }}/tipo-pendencias/d7cf392b-0460-4ea1-89be-17bc9052077c"
+name: DELETE
+description: ""
+method: DELETE
+body: {}
+parameters: []
+headers: []
+authentication:
+  type: bearer
+  token: "{{ _.token }}"
+metaSortKey: -1648555231625.5
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

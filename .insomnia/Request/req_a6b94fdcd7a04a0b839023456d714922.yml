@@ -1,0 +1,21 @@
+_id: req_a6b94fdcd7a04a0b839023456d714922
+type: Request
+parentId: fld_8cd501d99ec24be59d5c8fe42345febc
+modified: 1650477256820
+created: 1650477098310
+url: "{{ _.base_url }}/andamentos/{% uuid 'v4' %}"
+name: DELETE
+description: ""
+method: DELETE
+body: {}
+parameters: []
+headers: []
+authentication: {}
+metaSortKey: -1650477098310
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global
