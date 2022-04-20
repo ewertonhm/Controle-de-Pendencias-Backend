@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, ParseUUIDPipe } from '@nestjs/common';
 import { PendenciasService } from './pendencias.service';
 import { CreatePendenciaDto } from './dto/create-pendencia.dto';
 import { UpdatePendenciaDto } from './dto/update-pendencia.dto';
@@ -20,18 +20,23 @@ export class PendenciasController {
     return this.pendenciasService.findAll();
   }
 
+  @Get('extend')
+  findAllFull() {
+    return this.pendenciasService.findAllFull();
+  }
+
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.pendenciasService.findOne(+id);
+  findOne(@Param('id', ParseUUIDPipe) id: string) {
+    return this.pendenciasService.findOne(id);
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updatePendenciaDto: UpdatePendenciaDto) {
-    return this.pendenciasService.update(+id, updatePendenciaDto);
+  update(@Param('id', ParseUUIDPipe) id: string, @Body() updatePendenciaDto: UpdatePendenciaDto) {
+    return this.pendenciasService.update(id, updatePendenciaDto);
   }
 
   @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.pendenciasService.remove(+id);
+  remove(@Param('id', ParseUUIDPipe) id: string) {
+    return this.pendenciasService.remove(id);
   }
 }
