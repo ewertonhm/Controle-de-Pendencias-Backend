@@ -1,6 +1,6 @@
-import { ValidationPipe } from '@nestjs/common';
+import { Options, ValidationPipe } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
-import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
+import { DocumentBuilder, SwaggerCustomOptions, SwaggerModule } from '@nestjs/swagger';
 import { AppModule } from './app.module';
 import { TransformInterceptor } from './interceptors/transform.interceptors';
 
@@ -13,13 +13,22 @@ async function bootstrap() {
 
   
   const config = new DocumentBuilder()
-    .setTitle('Cats example')
-    .setDescription('The cats API description')
+    .setTitle('API Pendencias Monitoramento')
+    .setDescription('The pendencias-monitoramento API')
     .setVersion('1.0')
-    .addTag('cats')
+    .addTag('monitoramento')
     .build();
+  
+    const customOptions: SwaggerCustomOptions = {
+      swaggerOptions: {
+        persistAuthorization: true,
+      },
+      customSiteTitle: 'API Pendencias Monitoramento',
+    };
+
   const document = SwaggerModule.createDocument(app, config);
-  SwaggerModule.setup('api', app, document);
+
+  SwaggerModule.setup('api', app, document, customOptions);
   
   await app.listen(3000);
 }
