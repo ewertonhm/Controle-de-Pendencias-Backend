@@ -7,6 +7,7 @@ import { TipoPendencia } from './entities/tipo_pendencia.entity';
 @Module({
   imports: [TypeOrmModule.forFeature([TipoPendencia])],
   controllers: [TipoPendenciasController],
-  providers: [TipoPendenciasService]
+  providers: [TipoPendenciasService],
+  exports: [TipoPendenciasService]
 })
 export class TipoPendenciasModule {}

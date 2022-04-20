@@ -1,5 +1,5 @@
 import { ApiProperty } from "@nestjs/swagger";
-import { IsDate, IsOptional, IsString, IsUUID, MaxLength, MinLength } from "class-validator";
+import { IsDate, IsDateString, IsOptional, IsString, IsUUID, MaxLength, MinLength } from "class-validator";
 
 export class CreatePendenciaDto {
     @IsUUID()
@@ -25,18 +25,18 @@ export class CreatePendenciaDto {
     @ApiProperty()
     descricao: string;
 
-    @IsDate()
+    @IsDateString()
     @ApiProperty()
-    inicio: string;
+    inicio: Date;
 
-    @IsDate()
+    @IsDateString()
     @IsOptional()
     @ApiProperty({
         required: false,
     })
     previsao: Date;
 
-    @IsDate()
+    @IsDateString()
     @IsOptional()
     @ApiProperty({
         required: false,
