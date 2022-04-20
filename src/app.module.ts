@@ -10,7 +10,10 @@ import { PendenciasModule } from './pendencias/pendencias.module';
   imports: [
     TypeOrmModule.forRoot(typeOrmConfig), 
     AuthModule, 
-    TipoPendenciasModule, AndamentosModule, PendenciasModule,
+    
+    TipoPendenciasModule, 
+    AndamentosModule, 
+    PendenciasModule,
   ],
   controllers: [],
   providers: [],
