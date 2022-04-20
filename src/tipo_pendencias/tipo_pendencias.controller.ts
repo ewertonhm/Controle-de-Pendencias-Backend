@@ -3,9 +3,10 @@ import { TipoPendenciasService } from './tipo_pendencias.service';
 import { CreateTipoPendenciaDto } from './dto/create-tipo_pendencia.dto';
 import { UpdateTipoPendenciaDto } from './dto/update-tipo_pendencia.dto';
 import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
-import { ApiBearerAuth } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 
 @ApiBearerAuth()
+@ApiTags('tipo_pendencias')
 @Controller('tipo-pendencias')
 export class TipoPendenciasController {
   constructor(private readonly tipoPendenciasService: TipoPendenciasService) {}

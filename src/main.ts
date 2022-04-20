@@ -16,7 +16,10 @@ async function bootstrap() {
     .setTitle('API Pendencias Monitoramento')
     .setDescription('The pendencias-monitoramento API')
     .setVersion('1.0')
-    .addTag('monitoramento')
+    .addTag('users')
+    .addTag('pendencias')
+    .addTag('tipo_pendencias')
+    .addTag('andamentos')
     .build();
   
     const customOptions: SwaggerCustomOptions = {

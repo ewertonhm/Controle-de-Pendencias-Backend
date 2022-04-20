@@ -2,7 +2,10 @@ import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/commo
 import { PendenciasService } from './pendencias.service';
 import { CreatePendenciaDto } from './dto/create-pendencia.dto';
 import { UpdatePendenciaDto } from './dto/update-pendencia.dto';
+import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 
+@ApiBearerAuth()
+@ApiTags('pendencias')
 @Controller('pendencias')
 export class PendenciasController {
   constructor(private readonly pendenciasService: PendenciasService) {}
