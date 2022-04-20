@@ -116,7 +116,13 @@ export class PendenciasService {
     return await this.findOne(id);
   }
 
-  remove(id: string) {
-    return `This action removes a #${id} pendencia`;
+  async remove(id: string) {
+    let pendencia: Pendencia = await this.findOne(id);
+
+    if(!pendencia){
+      throw new NotFoundException("Pendencia não encontrada!");
+    }
+    
+    return await this.model.delete(id);
   }
 }
