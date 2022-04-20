@@ -1,0 +1,21 @@
+_id: req_e636a153c63a444da3de15135dd204b0
+type: Request
+parentId: fld_4a5a43db38f94185b00d19e6ac58e8c5
+modified: 1650481622271
+created: 1650481619406
+url: "{{ _.base_url }}/pendencias/extend"
+name: LIST-EXTEND
+description: ""
+method: GET
+body: {}
+parameters: []
+headers: []
+authentication: {}
+metaSortKey: -1650477031391
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global
