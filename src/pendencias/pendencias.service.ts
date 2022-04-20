@@ -1,7 +1,6 @@
-import { Injectable } from '@nestjs/common';
+import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { TipoPendenciasService } from 'src/tipo_pendencias/tipo_pendencias.service';
-import { User } from 'src/users/entities/user.entity';
 import { UsersService } from 'src/users/users.service';
 import { Repository } from 'typeorm';
 import { CreatePendenciaDto } from './dto/create-pendencia.dto';
@@ -18,28 +17,11 @@ export class PendenciasService {
     ) {}
 
   async create(createPendenciaDto: CreatePendenciaDto) {
-    const userAbertura = await this.usersService.findOne(createPendenciaDto.usuarioAbertura);
-    let userFechamento: User;
-
-    if(createPendenciaDto.usuarioFechamento){
-      userFechamento = await this.usersService.findOne(createPendenciaDto.usuarioFechamento);
-    }
-
-    const tipoPendencia = await this.tipoPendenciasService.findOne(createPendenciaDto.tipoPendencia);
-
-    let pendenciaToSave = new Pendencia;
-    pendenciaToSave.tipoPendencia = tipoPendencia;
-    pendenciaToSave.userAbertura = userAbertura;
-    pendenciaToSave.userFechamento = userFechamento;
-    pendenciaToSave.titulo = createPendenciaDto.titulo;
-    pendenciaToSave.descricao = createPendenciaDto.descricao;
-    pendenciaToSave.inicio = createPendenciaDto.inicio;
-    pendenciaToSave.previsao = createPendenciaDto.previsao;
-    pendenciaToSave.fim = createPendenciaDto.fim;
-    pendenciaToSave.task = createPendenciaDto.task;
-    pendenciaToSave.incidente = createPendenciaDto.task;
+    createPendenciaDto.userAbertura = await this.usersService.findOne(createPendenciaDto.userAberturaId);
+    createPendenciaDto.userFechamento = await this.usersService.findOne(createPendenciaDto.userFechamentoId);
+    createPendenciaDto.tipoPendencia = await this.tipoPendenciasService.findOne(createPendenciaDto.tipoPendenciaId);
   
-    return await this.model.save(pendenciaToSave);
+    return await this.model.save(createPendenciaDto);
   }
 
   async findAll() {
@@ -58,15 +40,35 @@ export class PendenciasService {
     return pendencias;
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} pendencia`;
+  async findOne(id: string) {
+    const pendencia = await this.model.findOne({
+      where: {
+        id
+      },
+      relations: {
+        tipoPendencia: true,
+        userAbertura: true,
+        userFechamento: true
+      },
+    });
+
+    if(!pendencia){
+      throw new HttpException("Not Found", HttpStatus.NOT_FOUND);
+    }
+
+    return pendencia;
   }
 
-  update(id: number, updatePendenciaDto: UpdatePendenciaDto) {
-    return `This action updates a #${id} pendencia`;
+  async update(id: string, updatePendenciaDto: UpdatePendenciaDto) {
+    let pendencia: Pendencia = await this.findOne(id);
+
+    updatePendenciaDto.userFechamento = await this.usersService.findOne(updatePendenciaDto.userFechamentoId);
+
+    await this.model.update(id, updatePendenciaDto);
+    return await this.findOne(id);
   }
 
-  remove(id: number) {
+  remove(id: string) {
     return `This action removes a #${id} pendencia`;
   }
 }
