@@ -20,6 +20,13 @@ export class PendenciasController {
     return this.pendenciasService.findAll();
   }
 
+  @Get('extend')
+  findAllFull() {
+    return this.pendenciasService.findAllFull();
+  }
+
+  
+
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.pendenciasService.findOne(+id);

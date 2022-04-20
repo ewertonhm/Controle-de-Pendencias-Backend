@@ -18,7 +18,6 @@ export class PendenciasService {
     ) {}
 
   async create(createPendenciaDto: CreatePendenciaDto) {
-    
     const userAbertura = await this.usersService.findOne(createPendenciaDto.usuarioAbertura);
     let userFechamento: User;
 
@@ -43,8 +42,20 @@ export class PendenciasService {
     return await this.model.save(pendenciaToSave);
   }
 
-  findAll() {
-    return `This action returns all pendencias`;
+  async findAll() {
+    let pendencias = await this.model.find();
+    return pendencias;
+  }
+
+  async findAllFull() {
+    let pendencias = await this.model.find({
+      relations: {
+        tipoPendencia: true,
+        userAbertura: true,
+        userFechamento: true
+      }
+    });
+    return pendencias;
   }
 
   findOne(id: number) {
