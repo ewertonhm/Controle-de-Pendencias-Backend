@@ -1,9 +1,9 @@
 _id: req_abbc866d8bc04621a37d49cb79ab8c05
 type: Request
 parentId: fld_4a5a43db38f94185b00d19e6ac58e8c5
-modified: 1650477188961
+modified: 1650482397273
 created: 1650477027923
-url: "{{ _.base_url }}/pendencias/{% uuid 'v1' %}"
+url: "{{ _.base_url }}/pendencias/{{ _.pendencia_uuid }}"
 name: FIND_ONE
 description: ""
 method: GET

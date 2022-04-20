@@ -1,7 +1,7 @@
 _id: req_3a9c85add82c4db9aceb71eefc1b3f53
 type: Request
 parentId: fld_8cd501d99ec24be59d5c8fe42345febc
-modified: 1650477246685
+modified: 1650482435235
 created: 1650477091192
 url: "{{ _.base_url }}/andamentos/{% uuid 'v4' %}"
 name: UPDATE
@@ -9,7 +9,10 @@ description: ""
 method: PATCH
 body:
   mimeType: application/json
-  text: ""
+  text: |-
+    {
+    	"userFechamento": "{{ _.user_uuid }}"
+    }
 parameters: []
 headers:
   - name: Content-Type
