@@ -1,19 +1,17 @@
-_id: req_4da4742bf88f4912b3230cffc8692a0b
+_id: req_e636a153c63a444da3de15135dd204b0
 type: Request
-parentId: fld_0c611d1439434fe3aa4f0d8c38dc507d
-modified: 1650477763061
-created: 1648555552109
-url: "{{ _.base_url }}/users/"
-name: LIST
+parentId: fld_4a5a43db38f94185b00d19e6ac58e8c5
+modified: 1650481622271
+created: 1650481619406
+url: "{{ _.base_url }}/pendencias/extend"
+name: LIST-EXTEND
 description: ""
 method: GET
 body: {}
 parameters: []
 headers: []
-authentication:
-  type: bearer
-  token: "{{ _.token }}"
-metaSortKey: -1648555231663
+authentication: {}
+metaSortKey: -1650477031391
 isPrivate: false
 settingStoreCookies: true
 settingSendCookies: true
