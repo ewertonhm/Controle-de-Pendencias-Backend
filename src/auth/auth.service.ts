@@ -1,13 +1,15 @@
 import { Injectable } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { compare } from 'bcrypt';
+import { TokenService } from 'src/token/token.service';
 import { UsersService } from 'src/users/users.service';
 
 @Injectable()
 export class AuthService {
     constructor(
         private usersService: UsersService,
-        private jwtService: JwtService
+        private jwtService: JwtService,
+        private tokenService: TokenService,
         ) {}
 
     async ValidateUser(email: string, senha: string): Promise<any> {
@@ -21,9 +23,11 @@ export class AuthService {
 
     async login(user: any) {
         const payload = { username: user.email, sub: user.id};
+        const token = this.jwtService.sign(payload);
+        await this.tokenService.save(token, user.email);
         return{
-            acess_token: this.jwtService.sign(payload),
-        }
+            acess_token: token,
+        };
     }
 
 }

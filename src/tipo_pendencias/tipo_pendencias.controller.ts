@@ -1,32 +1,40 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, ParseUUIDPipe } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, ParseUUIDPipe, UseGuards } from '@nestjs/common';
 import { TipoPendenciasService } from './tipo_pendencias.service';
 import { CreateTipoPendenciaDto } from './dto/create-tipo_pendencia.dto';
 import { UpdateTipoPendenciaDto } from './dto/update-tipo_pendencia.dto';
+import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
+import { ApiBearerAuth } from '@nestjs/swagger';
 
+@ApiBearerAuth()
 @Controller('tipo-pendencias')
 export class TipoPendenciasController {
   constructor(private readonly tipoPendenciasService: TipoPendenciasService) {}
 
+  @UseGuards(JwtAuthGuard)
   @Post()
   create(@Body() createTipoPendenciaDto: CreateTipoPendenciaDto) {
     return this.tipoPendenciasService.create(createTipoPendenciaDto);
   }
 
+  @UseGuards(JwtAuthGuard)
   @Get()
   findAll() {
     return this.tipoPendenciasService.findAll();
   }
 
+  @UseGuards(JwtAuthGuard)
   @Get(':id')
   findOne(@Param('id', ParseUUIDPipe) id: string) {
     return this.tipoPendenciasService.findOne(id);
   }
 
+  @UseGuards(JwtAuthGuard)
   @Patch(':id')
   update(@Param('id', ParseUUIDPipe) id: string, @Body() updateTipoPendenciaDto: UpdateTipoPendenciaDto) {
     return this.tipoPendenciasService.update(id, updateTipoPendenciaDto);
   }
 
+  @UseGuards(JwtAuthGuard)
   @Delete(':id')
   remove(@Param('id', ParseUUIDPipe) id: string) {
     return this.tipoPendenciasService.remove(id);
