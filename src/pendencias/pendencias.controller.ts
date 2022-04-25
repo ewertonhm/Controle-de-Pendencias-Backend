@@ -8,6 +8,7 @@ import { CreateAndamentoDto } from 'src/andamentos/dto/create-andamento.dto';
 import { GetUser } from 'src/auth/get-user.decorator';
 import { User } from 'src/users/entities/user.entity';
 import { use } from 'passport';
+import { FecharPendenciaDto } from './dto/fechar-pendencia.dto';
 
 @UseGuards(JwtAuthGuard)
 @ApiBearerAuth()
@@ -47,6 +48,15 @@ export class PendenciasController {
 
   @Patch(':id')
   update(@Param('id', ParseUUIDPipe) id: string, @Body() updatePendenciaDto: UpdatePendenciaDto) {
+    return this.pendenciasService.update(id, updatePendenciaDto);
+  }
+
+  @Patch(':id/close')
+  fecharPendnecia(@Param('id', ParseUUIDPipe) id: string, @Body() fecharPendenciaDto: FecharPendenciaDto, @GetUser() user) {
+    let updatePendenciaDto = new UpdatePendenciaDto;
+    updatePendenciaDto.userFechamento = user.userId;
+    updatePendenciaDto.fim = fecharPendenciaDto.fim;
+    console.log(updatePendenciaDto);
     return this.pendenciasService.update(id, updatePendenciaDto);
   }
 

@@ -114,8 +114,6 @@ export class PendenciasService {
       updatePendenciaDto.tipoPendencia = tipoPendencia;
     }
 
-    updatePendenciaDto.userFechamento = await this.usersService.findOne(updatePendenciaDto.userFechamentoId);
-
     await this.model.update(id, updatePendenciaDto);
     return await this.findOne(id);
   }
