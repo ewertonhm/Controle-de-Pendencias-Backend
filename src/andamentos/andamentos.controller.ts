@@ -1,5 +1,6 @@
 import { Controller, Get, Post, Body, Patch, Param, Delete, UseGuards, ParseUUIDPipe } from '@nestjs/common';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
+import { GetUser } from 'src/auth/get-user.decorator';
 import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
 import { AndamentosService } from './andamentos.service';
 import { CreateAndamentoDto } from './dto/create-andamento.dto';
@@ -13,7 +14,8 @@ export class AndamentosController {
   constructor(private readonly andamentosService: AndamentosService) {}
   
   @Post()
-  create(@Body() createAndamentoDto: CreateAndamentoDto) {
+  create(@Body() createAndamentoDto: CreateAndamentoDto, @GetUser() user) {
+    createAndamentoDto.userId = user.userId;
     return this.andamentosService.create(createAndamentoDto);
   }
 
