@@ -41,4 +41,14 @@ export class PendenciasController {
   remove(@Param('id', ParseUUIDPipe) id: string) {
     return this.pendenciasService.remove(id);
   }
+
+  @Get(':id/andamentos/')
+  findAndamentos(@Param('id', ParseUUIDPipe) id: string) {
+    return id;
+  }
+
+  @Get(':id/andamentos/last/')
+  findUltimoAndamento(@Param('id', ParseUUIDPipe) id: string) {
+    return id;
+  }
 }

@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, UseGuards } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, UseGuards, ParseUUIDPipe } from '@nestjs/common';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
 import { AndamentosService } from './andamentos.service';
@@ -22,18 +22,23 @@ export class AndamentosController {
     return this.andamentosService.findAll();
   }
 
+  @Get('extend')
+  findAllExtend() {
+    return this.andamentosService.findAllFull();
+  }
+
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.andamentosService.findOne(+id);
+  findOne(@Param('id', ParseUUIDPipe) id: string) {
+    return this.andamentosService.findOne(id);
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateAndamentoDto: UpdateAndamentoDto) {
-    return this.andamentosService.update(+id, updateAndamentoDto);
+  update(@Param('id', ParseUUIDPipe) id: string, @Body() updateAndamentoDto: UpdateAndamentoDto) {
+    return this.andamentosService.update(id, updateAndamentoDto);
   }
 
   @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.andamentosService.remove(+id);
+  remove(@Param('id', ParseUUIDPipe) id: string) {
+    return this.andamentosService.remove(id);
   }
 }

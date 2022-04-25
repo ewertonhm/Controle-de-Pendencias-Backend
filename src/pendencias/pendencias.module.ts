@@ -17,6 +17,6 @@ import { UsersModule } from 'src/users/users.module';
   ],
   controllers: [PendenciasController],
   providers: [PendenciasService],
-  exports: []
+  exports: [PendenciasService]
 })
 export class PendenciasModule {}
