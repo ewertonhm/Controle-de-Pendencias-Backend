@@ -1,15 +1,17 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, UseGuards } from '@nestjs/common';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
+import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
 import { AndamentosService } from './andamentos.service';
 import { CreateAndamentoDto } from './dto/create-andamento.dto';
 import { UpdateAndamentoDto } from './dto/update-andamento.dto';
 
+@UseGuards(JwtAuthGuard)
 @ApiBearerAuth()
 @ApiTags('andamentos')
 @Controller('andamentos')
 export class AndamentosController {
   constructor(private readonly andamentosService: AndamentosService) {}
-
+  
   @Post()
   create(@Body() createAndamentoDto: CreateAndamentoDto) {
     return this.andamentosService.create(createAndamentoDto);

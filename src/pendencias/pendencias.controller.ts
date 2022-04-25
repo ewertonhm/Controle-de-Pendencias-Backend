@@ -1,15 +1,17 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, ParseUUIDPipe } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, ParseUUIDPipe, UseGuards } from '@nestjs/common';
 import { PendenciasService } from './pendencias.service';
 import { CreatePendenciaDto } from './dto/create-pendencia.dto';
 import { UpdatePendenciaDto } from './dto/update-pendencia.dto';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
+import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
 
+@UseGuards(JwtAuthGuard)
 @ApiBearerAuth()
 @ApiTags('pendencias')
 @Controller('pendencias')
 export class PendenciasController {
   constructor(private readonly pendenciasService: PendenciasService) {}
-
+  
   @Post()
   create(@Body() createPendenciaDto: CreatePendenciaDto) {
     return this.pendenciasService.create(createPendenciaDto);
