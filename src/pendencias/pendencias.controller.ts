@@ -4,6 +4,7 @@ import { CreatePendenciaDto } from './dto/create-pendencia.dto';
 import { UpdatePendenciaDto } from './dto/update-pendencia.dto';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
+import { CreateAndamentoDto } from 'src/andamentos/dto/create-andamento.dto';
 
 @UseGuards(JwtAuthGuard)
 @ApiBearerAuth()
@@ -16,6 +17,12 @@ export class PendenciasController {
   create(@Body() createPendenciaDto: CreatePendenciaDto) {
     return this.pendenciasService.create(createPendenciaDto);
   }
+
+  @Post(':id/andamento')
+  createAndamento(@Param('id', ParseUUIDPipe) id: string, @Body() createAndamentoDto: CreateAndamentoDto) {
+    return this.pendenciasService.createAndamento(id, createAndamentoDto);
+  }
+
 
   @Get()
   findAll() {
@@ -44,11 +51,11 @@ export class PendenciasController {
 
   @Get(':id/andamentos/')
   findAndamentos(@Param('id', ParseUUIDPipe) id: string) {
-    return id;
+    return this.pendenciasService.findAllAndamentos(id);
   }
 
   @Get(':id/andamentos/last/')
   findUltimoAndamento(@Param('id', ParseUUIDPipe) id: string) {
-    return id;
+    return this.pendenciasService.findLastAndamento(id);
   }
 }

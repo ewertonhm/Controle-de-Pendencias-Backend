@@ -70,33 +70,13 @@ export class AndamentosService {
   }
 
   async findLastOneFromPendencia(pendencia: Pendencia) {
-    const andamento = await this.andamento.findOne({
-      where: {
-        pendencia
-      },
-      relations: {
-        user: true,
-        pendencia: true
-      },
-    });
+    const andamento = this.andamento.createQueryBuilder("andamento").where("andamento.pendenciaId = :id", {id: pendencia.id}).addOrderBy("andamento.id","ASC").getOne();
 
-    if(!andamento){
-      throw new HttpException("Not Found", HttpStatus.NOT_FOUND);
-    }
     return andamento;
   }
 
   async findAllFromPendencia(pendencia: Pendencia) {
-    const andamentos = await this.andamento.find({
-      where: {
-        pendencia
-      },
-      relations: {
-        user: true,
-        pendencia: true
-      },
-    });
-
+    const andamentos = this.andamento.createQueryBuilder("andamento").where("andamento.pendenciaId = :id", {id: pendencia.id}).getMany();
     return andamentos;
   }
 

@@ -1,8 +1,11 @@
-import { HttpException, HttpStatus, Injectable, NotFoundException } from '@nestjs/common';
+import { forwardRef, HttpException, HttpStatus, Inject, Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
+import { AndamentosService } from 'src/andamentos/andamentos.service';
+import { CreateAndamentoDto } from 'src/andamentos/dto/create-andamento.dto';
 import { TipoPendenciasService } from 'src/tipo_pendencias/tipo_pendencias.service';
 import { UsersService } from 'src/users/users.service';
 import { Repository } from 'typeorm';
+import { CreateAndamentoFromPendenciaDto } from './dto/create-andamento-from-pendencia.dto';
 import { CreatePendenciaDto } from './dto/create-pendencia.dto';
 import { UpdatePendenciaDto } from './dto/update-pendencia.dto';
 import { Pendencia } from './entities/pendencia.entity';
@@ -14,6 +17,8 @@ export class PendenciasService {
     private model: Repository<Pendencia>,
     private usersService: UsersService,
     private tipoPendenciasService: TipoPendenciasService,
+    @Inject(forwardRef(()=>AndamentosService))
+    private andamentsService: AndamentosService
     ) {}
 
   async create(createPendenciaDto: CreatePendenciaDto) {
@@ -49,7 +54,7 @@ export class PendenciasService {
     return pendencias;
   }
 
-  async findAllFull() {
+  async findAllFull(): Promise<Pendencia[]> {
     let pendencias = await this.model.find({
       relations: {
         tipoPendencia: true,
@@ -125,4 +130,38 @@ export class PendenciasService {
     
     return await this.model.delete(id);
   }
+
+  async findLastAndamento(id: string) {
+    let pendencia = await this.findOne(id);
+
+    if(!pendencia){
+      throw new NotFoundException("Pendencia não encontrada!");
+    }
+    let andamento = await this.andamentsService.findLastOneFromPendencia(pendencia);
+
+    return andamento;
+  }
+
+  async findAllAndamentos(id: string) {
+    let pendencia = await this.findOne(id);
+
+    if(!pendencia){
+      throw new NotFoundException("Pendencia não encontrada!");
+    }
+    let andamentos = await this.andamentsService.findAllFromPendencia(pendencia);
+
+    return andamentos;
+  }
+
+  async createAndamento(id: string, createAndamentoPartial: CreateAndamentoFromPendenciaDto) {
+    let pendencia = await this.findOne(id);
+    if(!pendencia){
+      throw new NotFoundException("Pendencia não encontrada!");
+    }
+    let createAndamento = new CreateAndamentoDto;
+    createAndamento.andamento = createAndamentoPartial.andamento;
+    createAndamento.dataAndamento = createAndamentoPartial.dataAndamento;
+    createAndamento.pendenciaId = id;
+    createAndamento.userId = '';
+  }  
 }

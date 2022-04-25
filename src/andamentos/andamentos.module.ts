@@ -18,6 +18,6 @@ import { PendenciasModule } from 'src/pendencias/pendencias.module';
   ],
   controllers: [AndamentosController],
   providers: [AndamentosService],
-  exports: []
+  exports: [AndamentosService]
 })
 export class AndamentosModule {}
