@@ -5,6 +5,9 @@ import { UpdatePendenciaDto } from './dto/update-pendencia.dto';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
 import { CreateAndamentoDto } from 'src/andamentos/dto/create-andamento.dto';
+import { GetUser } from 'src/auth/get-user.decorator';
+import { User } from 'src/users/entities/user.entity';
+import { use } from 'passport';
 
 @UseGuards(JwtAuthGuard)
 @ApiBearerAuth()
@@ -14,12 +17,15 @@ export class PendenciasController {
   constructor(private readonly pendenciasService: PendenciasService) {}
   
   @Post()
-  create(@Body() createPendenciaDto: CreatePendenciaDto) {
+  create(@Body() createPendenciaDto: CreatePendenciaDto, @GetUser() user) {
+    createPendenciaDto.userAberturaId = user.userId;
     return this.pendenciasService.create(createPendenciaDto);
   }
 
   @Post(':id/andamento')
-  createAndamento(@Param('id', ParseUUIDPipe) id: string, @Body() createAndamentoDto: CreateAndamentoDto) {
+  createAndamento(@Param('id', ParseUUIDPipe) id: string, @Body() createAndamentoDto: CreateAndamentoDto, @GetUser() user) {
+    createAndamentoDto.userId = user.userId;
+    createAndamentoDto.pendenciaId = id;
     return this.pendenciasService.createAndamento(id, createAndamentoDto);
   }
 

@@ -12,7 +12,7 @@ export class CreatePendenciaDto {
     tipoPendencia: TipoPendencia;
 
     @IsUUID()
-    @ApiProperty()
+    @IsOptional()
     userAberturaId: string;
 
     @IsOptional()

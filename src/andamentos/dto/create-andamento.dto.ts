@@ -6,13 +6,14 @@ import { User } from "src/users/entities/user.entity";
 export class CreateAndamentoDto {
     @IsUUID()
     @ApiProperty()
+    @IsOptional()
     pendenciaId: string;
 
     @IsOptional()
     pendencia: Pendencia;
 
     @IsUUID()
-    @ApiProperty()
+    @IsOptional()
     userId: string;
 
     @IsOptional()

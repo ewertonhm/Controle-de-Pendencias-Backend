@@ -5,7 +5,6 @@ import { CreateAndamentoDto } from 'src/andamentos/dto/create-andamento.dto';
 import { TipoPendenciasService } from 'src/tipo_pendencias/tipo_pendencias.service';
 import { UsersService } from 'src/users/users.service';
 import { Repository } from 'typeorm';
-import { CreateAndamentoFromPendenciaDto } from './dto/create-andamento-from-pendencia.dto';
 import { CreatePendenciaDto } from './dto/create-pendencia.dto';
 import { UpdatePendenciaDto } from './dto/update-pendencia.dto';
 import { Pendencia } from './entities/pendencia.entity';
@@ -152,16 +151,15 @@ export class PendenciasService {
 
     return andamentos;
   }
-
-  async createAndamento(id: string, createAndamentoPartial: CreateAndamentoFromPendenciaDto) {
+  
+  async createAndamento(id: string, createAndamentoDto: CreateAndamentoDto) {
     let pendencia = await this.findOne(id);
     if(!pendencia){
       throw new NotFoundException("Pendencia não encontrada!");
     }
-    let createAndamento = new CreateAndamentoDto;
-    createAndamento.andamento = createAndamentoPartial.andamento;
-    createAndamento.dataAndamento = createAndamentoPartial.dataAndamento;
-    createAndamento.pendenciaId = id;
-    createAndamento.userId = '';
+    createAndamentoDto.pendencia = pendencia
+    createAndamentoDto.user = await this.usersService.findOne(createAndamentoDto.userId);
+
+    return await this.andamentsService.create(createAndamentoDto);
   }  
 }
