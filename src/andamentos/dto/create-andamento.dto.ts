@@ -1,20 +1,29 @@
 import { ApiProperty } from "@nestjs/swagger";
-import { IsDate, IsOptional, IsString, IsUUID } from "class-validator";
+import { IsDate, IsDateString, IsOptional, IsString, IsUUID } from "class-validator";
+import { Pendencia } from "src/pendencias/entities/pendencia.entity";
+import { User } from "src/users/entities/user.entity";
 
 export class CreateAndamentoDto {
     @IsUUID()
     @ApiProperty()
-    pendencia: string;
+    @IsOptional()
+    pendenciaId: string;
+
+    @IsOptional()
+    pendencia: Pendencia;
 
     @IsUUID()
-    @ApiProperty()
-    user: string;
+    @IsOptional()
+    userId: string;
+
+    @IsOptional()
+    user: User;
 
     @IsString()
     @ApiProperty()
     andamento: string;
 
-    @IsDate()
+    @IsDateString()
     @ApiProperty()
     dataAndamento: string;
 }

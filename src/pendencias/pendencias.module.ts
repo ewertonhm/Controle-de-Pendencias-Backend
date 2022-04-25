@@ -6,6 +6,7 @@ import { Pendencia } from './entities/pendencia.entity';
 import { AuthModule } from 'src/auth/auth.module';
 import { TipoPendenciasModule } from 'src/tipo_pendencias/tipo_pendencias.module';
 import { UsersModule } from 'src/users/users.module';
+import { AndamentosModule } from 'src/andamentos/andamentos.module';
 
 
 @Module({
@@ -13,10 +14,11 @@ import { UsersModule } from 'src/users/users.module';
     TypeOrmModule.forFeature([Pendencia]), 
     forwardRef(() => AuthModule),
     TipoPendenciasModule,
-    UsersModule
+    UsersModule,
+    forwardRef(() => AndamentosModule)
   ],
   controllers: [PendenciasController],
   providers: [PendenciasService],
-  exports: []
+  exports: [PendenciasService]
 })
 export class PendenciasModule {}

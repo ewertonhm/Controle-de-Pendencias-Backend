@@ -1,5 +1,7 @@
-import { HttpException, HttpStatus, Injectable, NotFoundException } from '@nestjs/common';
+import { forwardRef, HttpException, HttpStatus, Inject, Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
+import { AndamentosService } from 'src/andamentos/andamentos.service';
+import { CreateAndamentoDto } from 'src/andamentos/dto/create-andamento.dto';
 import { TipoPendenciasService } from 'src/tipo_pendencias/tipo_pendencias.service';
 import { UsersService } from 'src/users/users.service';
 import { Repository } from 'typeorm';
@@ -14,6 +16,8 @@ export class PendenciasService {
     private model: Repository<Pendencia>,
     private usersService: UsersService,
     private tipoPendenciasService: TipoPendenciasService,
+    @Inject(forwardRef(()=>AndamentosService))
+    private andamentsService: AndamentosService
     ) {}
 
   async create(createPendenciaDto: CreatePendenciaDto) {
@@ -49,7 +53,7 @@ export class PendenciasService {
     return pendencias;
   }
 
-  async findAllFull() {
+  async findAllFull(): Promise<Pendencia[]> {
     let pendencias = await this.model.find({
       relations: {
         tipoPendencia: true,
@@ -110,13 +114,50 @@ export class PendenciasService {
       updatePendenciaDto.tipoPendencia = tipoPendencia;
     }
 
-    updatePendenciaDto.userFechamento = await this.usersService.findOne(updatePendenciaDto.userFechamentoId);
-
     await this.model.update(id, updatePendenciaDto);
     return await this.findOne(id);
   }
 
-  remove(id: string) {
-    return `This action removes a #${id} pendencia`;
+  async remove(id: string) {
+    let pendencia: Pendencia = await this.findOne(id);
+
+    if(!pendencia){
+      throw new NotFoundException("Pendencia não encontrada!");
+    }
+    
+    return await this.model.delete(id);
   }
+
+  async findLastAndamento(id: string) {
+    let pendencia = await this.findOne(id);
+
+    if(!pendencia){
+      throw new NotFoundException("Pendencia não encontrada!");
+    }
+    let andamento = await this.andamentsService.findLastOneFromPendencia(pendencia);
+
+    return andamento;
+  }
+
+  async findAllAndamentos(id: string) {
+    let pendencia = await this.findOne(id);
+
+    if(!pendencia){
+      throw new NotFoundException("Pendencia não encontrada!");
+    }
+    let andamentos = await this.andamentsService.findAllFromPendencia(pendencia);
+
+    return andamentos;
+  }
+  
+  async createAndamento(id: string, createAndamentoDto: CreateAndamentoDto) {
+    let pendencia = await this.findOne(id);
+    if(!pendencia){
+      throw new NotFoundException("Pendencia não encontrada!");
+    }
+    createAndamentoDto.pendencia = pendencia
+    createAndamentoDto.user = await this.usersService.findOne(createAndamentoDto.userId);
+
+    return await this.andamentsService.create(createAndamentoDto);
+  }  
 }
