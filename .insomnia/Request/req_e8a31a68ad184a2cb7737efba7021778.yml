@@ -1,7 +1,7 @@
 _id: req_e8a31a68ad184a2cb7737efba7021778
 type: Request
 parentId: fld_4a5a43db38f94185b00d19e6ac58e8c5
-modified: 1650483755828
+modified: 1650903505222
 created: 1650477046721
 url: "{{ _.base_url }}/pendencias"
 name: CREATE
@@ -12,7 +12,6 @@ body:
   text: |-
     {
     	"tipoPendenciaId": "{{ _.tipo_pendencia_uuid }}",
-    	"userAberturaId": "{{ _.user_uuid }}",
     	"titulo": "Pendencia Teste3",
     	"descricao": "Rompimento XYZ",
     	"inicio": "2022-01-01T12:00:00-04:00"
@@ -22,7 +21,9 @@ headers:
   - name: Content-Type
     value: application/json
     id: pair_ca042a39d9584cb9bd4b93d1a3b8dc71
-authentication: {}
+authentication:
+  type: bearer
+  token: "{{ _.token }}"
 metaSortKey: -1650477046721
 isPrivate: false
 settingStoreCookies: true

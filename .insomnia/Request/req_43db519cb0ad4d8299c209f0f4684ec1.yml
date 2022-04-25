@@ -1,7 +1,7 @@
 _id: req_43db519cb0ad4d8299c209f0f4684ec1
 type: Request
 parentId: fld_8cd501d99ec24be59d5c8fe42345febc
-modified: 1650477281179
+modified: 1650904056564
 created: 1650477106142
 url: "{{ _.base_url }}/andamentos"
 name: CREATE
@@ -9,13 +9,20 @@ description: ""
 method: POST
 body:
   mimeType: application/json
-  text: ""
+  text: |-
+    {
+    	"pendenciaId":"{{ _.pendencia_uuid }}",
+    	"andamento":"Equipe chegou ao local e localizou o rompimento",
+    	"dataAndamento":"2022-01-01T12:35:00-04:00"
+    }
 parameters: []
 headers:
   - name: Content-Type
     value: application/json
     id: pair_e4f47bdd187142e6bcc6c6c2665f3449
-authentication: {}
+authentication:
+  type: bearer
+  token: "{{ _.token }}"
 metaSortKey: -1650477106142
 isPrivate: false
 settingStoreCookies: true

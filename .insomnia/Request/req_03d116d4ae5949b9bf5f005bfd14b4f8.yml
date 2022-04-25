@@ -1,10 +1,10 @@
-_id: req_20eb7957048748119c060206b164fc89
+_id: req_03d116d4ae5949b9bf5f005bfd14b4f8
 type: Request
 parentId: fld_4a5a43db38f94185b00d19e6ac58e8c5
-modified: 1650903941433
-created: 1650477034859
-url: "{{ _.base_url }}/pendencias"
-name: LIST
+modified: 1650903278943
+created: 1650888446467
+url: "{{ _.base_url }}/pendencias/{{ _.pendencia_uuid }}/andamentos/last/"
+name: ULTIMO ANDAMENTO
 description: ""
 method: GET
 body: {}
@@ -13,7 +13,7 @@ headers: []
 authentication:
   type: bearer
   token: "{{ _.token }}"
-metaSortKey: -1650477034859
+metaSortKey: -1650477028790
 isPrivate: false
 settingStoreCookies: true
 settingSendCookies: true

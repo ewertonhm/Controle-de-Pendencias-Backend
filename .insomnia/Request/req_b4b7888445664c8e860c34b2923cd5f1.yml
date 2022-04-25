@@ -1,30 +1,28 @@
-_id: req_5b3a101862274be9b35e6887176a1e61
+_id: req_b4b7888445664c8e860c34b2923cd5f1
 type: Request
-parentId: fld_0c611d1439434fe3aa4f0d8c38dc507d
-modified: 1650903927474
-created: 1648555231613
-url: "{{ _.base_url }}/users"
-name: CREATE
+parentId: fld_4a5a43db38f94185b00d19e6ac58e8c5
+modified: 1650903932158
+created: 1650889335372
+url: "{{ _.base_url }}/pendencias/{{ _.pendencia_uuid }}/andamento"
+name: CREATE ANDAMENTO
 description: ""
 method: POST
 body:
   mimeType: application/json
   text: |-
     {
-    	"nome": "Ewerton",
-    	"sobrenome": "Marschalk",
-    	"email": "ewerton1@email.com.br",
-    	"senha": "12345678"
+    	"andamento":"Equipe acionada e em deslocamento",
+    	"dataAndamento":"2022-01-01T12:20:00-04:00"
     }
 parameters: []
 headers:
   - name: Content-Type
     value: application/json
-    id: pair_266d95b8b1504202a4fbe4d9e12f01f0
+    id: pair_ca042a39d9584cb9bd4b93d1a3b8dc71
 authentication:
   type: bearer
   token: "{{ _.token }}"
-metaSortKey: -1648555231613
+metaSortKey: -1650477040790
 isPrivate: false
 settingStoreCookies: true
 settingSendCookies: true

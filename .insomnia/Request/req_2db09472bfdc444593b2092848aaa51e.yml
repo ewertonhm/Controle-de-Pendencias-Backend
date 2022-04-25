@@ -1,7 +1,7 @@
 _id: req_2db09472bfdc444593b2092848aaa51e
 type: Request
 parentId: fld_0c611d1439434fe3aa4f0d8c38dc507d
-modified: 1650472673030
+modified: 1650903924865
 created: 1650470706006
 url: "{{ _.base_url }}/token/refresh"
 name: REFRESH_TOKEN
@@ -9,9 +9,9 @@ description: ""
 method: PUT
 body:
   mimeType: application/json
-  text: >-
+  text: |-
     {
-    		"oldToken":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImV3ZXJ0b24ubWFyc2NoYWxrQHJlZGV1bmlmaXF1ZS5jb20uYnIiLCJzdWIiOiIzMDE0NjY3Zi1jOTMxLTQ5MWEtYTQ4My0wMzE4ODY4MWI5ZDUiLCJpYXQiOjE2NTA0NzE4MTQsImV4cCI6MTY1MDQ3MTg3NH0.SsNbaEx0i1LlHsS7exddD88yPYipn3zIKs5tpamROgk"
+    		"oldToken":"{{ _.token }}"
     }
 parameters: []
 headers:

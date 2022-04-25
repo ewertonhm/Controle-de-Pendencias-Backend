@@ -1,10 +1,10 @@
-_id: req_20eb7957048748119c060206b164fc89
+_id: req_f9b40f5792f74f1bacd9c7788e55b51d
 type: Request
-parentId: fld_4a5a43db38f94185b00d19e6ac58e8c5
-modified: 1650903941433
-created: 1650477034859
-url: "{{ _.base_url }}/pendencias"
-name: LIST
+parentId: fld_8cd501d99ec24be59d5c8fe42345febc
+modified: 1650904074700
+created: 1650889074772
+url: "{{ _.base_url }}/andamentos/extend"
+name: LIST-EXTEND
 description: ""
 method: GET
 body: {}
@@ -13,7 +13,7 @@ headers: []
 authentication:
   type: bearer
   token: "{{ _.token }}"
-metaSortKey: -1650477034859
+metaSortKey: -1650477070275.5
 isPrivate: false
 settingStoreCookies: true
 settingSendCookies: true

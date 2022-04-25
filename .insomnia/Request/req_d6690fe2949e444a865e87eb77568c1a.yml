@@ -1,9 +1,9 @@
 _id: req_d6690fe2949e444a865e87eb77568c1a
 type: Request
 parentId: fld_4a5a43db38f94185b00d19e6ac58e8c5
-modified: 1650477269521
+modified: 1650485463121
 created: 1650477062999
-url: "{{ _.base_url }}/pendencias/{% uuid 'v4' %}"
+url: "{{ _.base_url }}/pendencias/9b8204bb-e8ac-47a1-8354-6b5c4915decf"
 name: DELETE
 description: ""
 method: DELETE

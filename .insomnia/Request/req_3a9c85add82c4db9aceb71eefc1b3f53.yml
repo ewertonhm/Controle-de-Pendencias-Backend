@@ -1,9 +1,9 @@
 _id: req_3a9c85add82c4db9aceb71eefc1b3f53
 type: Request
 parentId: fld_8cd501d99ec24be59d5c8fe42345febc
-modified: 1650482435235
+modified: 1650889979901
 created: 1650477091192
-url: "{{ _.base_url }}/andamentos/{% uuid 'v4' %}"
+url: "{{ _.base_url }}/andamentos/6272b4f6-dda2-45f9-81ce-dd24883c0a2a"
 name: UPDATE
 description: ""
 method: PATCH
@@ -11,14 +11,16 @@ body:
   mimeType: application/json
   text: |-
     {
-    	"userFechamento": "{{ _.user_uuid }}"
+    	"user": "{{ _.user_uuid }}"
     }
 parameters: []
 headers:
   - name: Content-Type
     value: application/json
     id: pair_d239491a747b4e8282072a036ff3a881
-authentication: {}
+authentication:
+  type: bearer
+  token: "{{ _.token }}"
 metaSortKey: -1650477091192
 isPrivate: false
 settingStoreCookies: true
