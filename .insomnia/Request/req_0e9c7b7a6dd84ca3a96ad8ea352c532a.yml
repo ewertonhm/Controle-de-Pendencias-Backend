@@ -1,29 +1,27 @@
-_id: req_f67b15fa22be4fc089a221c1b7889b74
+_id: req_0e9c7b7a6dd84ca3a96ad8ea352c532a
 type: Request
-parentId: fld_0c611d1439434fe3aa4f0d8c38dc507d
-modified: 1650904562938
-created: 1648561387724
-url: "{{ _.base_url }}/users/login"
-name: LOGIN
+parentId: fld_4a5a43db38f94185b00d19e6ac58e8c5
+modified: 1650905858524
+created: 1650905275953
+url: "{{ _.base_url }}/pendencias/{{ _.pendencia_uuid }}/close"
+name: FECHAR PENDENCIA
 description: ""
-method: POST
+method: PATCH
 body:
   mimeType: application/json
   text: |-
     {
-    		"email": "ewerton.marschalk@redeunifique.com.br",
-    		"senha": "123mudar*"
+    	"fim":"2022-01-01T22:00:00.000Z"
     }
 parameters: []
 headers:
   - name: Content-Type
     value: application/json
-    id: pair_972667731d484dd5916196c58dc1f1d5
+    id: pair_615b8dffa7fc407391afaee7aa869dff
 authentication:
   type: bearer
   token: "{{ _.token }}"
-  disabled: true
-metaSortKey: -1648555231713
+metaSortKey: -1650905275953
 isPrivate: false
 settingStoreCookies: true
 settingSendCookies: true

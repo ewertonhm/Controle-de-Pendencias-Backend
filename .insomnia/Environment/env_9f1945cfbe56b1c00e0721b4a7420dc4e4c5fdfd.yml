@@ -1,15 +1,16 @@
 _id: env_9f1945cfbe56b1c00e0721b4a7420dc4e4c5fdfd
 type: Environment
 parentId: wrk_bc458bfe702c4c3686ac9fb65e7a37db
-modified: 1650903924265
+modified: 1650906453445
 created: 1648554700064
 name: Base Environment
 data:
   base_url: http://localhost:3000/api/v1
-  token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImV3ZXJ0b24ubWFyc2NoYWxrQHJlZGV1bmlmaXF1ZS5jb20uYnIiLCJzdWIiOiIzMDE0NjY3Zi1jOTMxLTQ5MWEtYTQ4My0wMzE4ODY4MWI5ZDUiLCJpYXQiOjE2NTA5MDM5MTUsImV4cCI6MTY1MDkwNTcxNX0.YMw2DeKQjcWInprIVt4Xu4beyHCh-SYgZzzZkks3sfE
+  token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImV3ZXJ0b24ubWFyc2NoYWxrQHJlZGV1bmlmaXF1ZS5jb20uYnIiLCJzdWIiOiIzMDE0NjY3Zi1jOTMxLTQ5MWEtYTQ4My0wMzE4ODY4MWI5ZDUiLCJpYXQiOjE2NTA5MDU4MjEsImV4cCI6MTY1MDkwNzYyMX0.5lkOqGEjlJJe2CKnp1t6tDd9DYiq3xr9-8-HflPM51I
   tipo_pendencia_uuid: b5f05717-e939-4cc4-bed2-37d11ce2f49b
   pendencia_uuid: 929f84a7-44d9-44b5-9fe2-86c072da5989
   andamento_uuid: eb7ceb95-17ba-4d2d-82ed-e714b7f1a981
+  user_uuid: 3014667f-c931-491a-a483-03188681b9d5
 dataPropertyOrder:
   "&":
     - base_url
@@ -17,6 +18,7 @@ dataPropertyOrder:
     - tipo_pendencia_uuid
     - pendencia_uuid
     - andamento_uuid
+    - user_uuid
 color: null
 isPrivate: false
 metaSortKey: 1648554700064
