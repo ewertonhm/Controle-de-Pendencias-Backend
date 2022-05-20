@@ -36,6 +36,10 @@ export class CreatePendenciaDto {
     @ApiProperty()
     descricao: string;
 
+    @IsString()
+    @ApiProperty()
+    responsavel: string;
+
     @IsDateString()
     @ApiProperty()
     inicio: Date;
