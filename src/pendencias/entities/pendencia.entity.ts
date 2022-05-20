@@ -29,6 +29,9 @@ export class Pendencia {
     previsao: Date;
 
     @Column({nullable: true})
+    responsavel: string;
+
+    @Column({nullable: true})
     fim: Date;
 
     @Column({nullable: true})
