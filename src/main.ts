@@ -5,8 +5,7 @@ import { AppModule } from './app.module';
 import { TransformInterceptor } from './interceptors/transform.interceptors';
 
 async function bootstrap() {
-  process.env.TZ = 'America/Sao_Paulo';
-  console.log(new Date().toString())
+
 
   const app = await NestFactory.create(AppModule);
 
@@ -39,4 +38,8 @@ async function bootstrap() {
   
   await app.listen(3001);
 }
+
+process.env.TZ = 'America/Sao_Paulo';
+console.log(new Date().toString())
+
 bootstrap();
