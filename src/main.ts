@@ -12,6 +12,8 @@ async function bootstrap() {
   app.useGlobalInterceptors(new TransformInterceptor)
 
   process.env.TZ = 'America/Sao_Paulo';
+  console.log(new Date().toString())
+
   
   const config = new DocumentBuilder()
     .setTitle('API Pendencias Monitoramento')
