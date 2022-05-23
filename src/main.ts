@@ -11,6 +11,7 @@ async function bootstrap() {
   app.useGlobalPipes(new ValidationPipe())
   app.useGlobalInterceptors(new TransformInterceptor)
 
+  console.log(process.env.TZ)
   
   const config = new DocumentBuilder()
     .setTitle('API Pendencias Monitoramento')
