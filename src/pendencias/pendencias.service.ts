@@ -111,8 +111,9 @@ export class PendenciasService {
       if(!tipoPendencia){
         throw new NotFoundException("tipoPendencia not found!");
       }
-      console.log(tipoPendencia);
       updatePendenciaDto.tipoPendencia = tipoPendencia;
+      delete updatePendenciaDto.tipoPendenciaId;
+      console.log(updatePendenciaDto);
     }
 
     await this.model.update(id, updatePendenciaDto);
