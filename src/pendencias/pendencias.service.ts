@@ -111,6 +111,7 @@ export class PendenciasService {
       if(!tipoPendencia){
         throw new NotFoundException("tipoPendencia not found!");
       }
+      console.log(tipoPendencia);
       updatePendenciaDto.tipoPendencia = tipoPendencia;
     }
 
