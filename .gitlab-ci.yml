@@ -1,6 +1,6 @@
 stages:        
   - copy
-  - permissions
+  - service_restart
 
 copy-job: 
     stage: copy
@@ -11,11 +11,15 @@ copy-job:
     - cp -r * /var/www/pendencias-api/
     - echo "Copy complete."
 
-config-permissions-job:   
-    stage: permissions  
+restart-service-job:
+    stage: service_restart
     tags:
     - tio-mon-extension
     script:
-    - echo "Fixing permissions."
-    - echo "Permissions fixed"
-
+    - echo "Stopping backend server."
+    - systemctl stop pendencias_backend.service
+    - echo "Server Stopped"
+    - echo "Starting Server"
+    - systemctl start pendencias_backend.service
+    - echo "Server started"
+    - systemctl status pendencias_backend.service
