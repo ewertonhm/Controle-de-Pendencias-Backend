@@ -30,7 +30,6 @@ export class TokenService {
     }
   }
   async refreshToken(oldToken: string): Promise<{ acess_token: string; } | HttpException> {
-    console.log(oldToken);
     let objToken = await this.model.findOne({where: {hash: oldToken}});
     if(objToken){
       let user = await this.userService.findOneByEmail(objToken.username);
