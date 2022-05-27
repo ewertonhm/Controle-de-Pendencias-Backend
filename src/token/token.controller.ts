@@ -12,6 +12,7 @@ export class TokenController{
     ){}
     @Put('refresh')
     async refreshToken(@Body() data: RefreshTokenDto): Promise<any>{
+        console.log(data);
         return await this.tokenService.refreshToken(data.oldToken)
     }
 }
