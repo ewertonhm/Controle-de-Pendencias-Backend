@@ -1,4 +1,4 @@
-import { Body, Controller, Put } from "@nestjs/common";
+import { Body, Controller, Post } from "@nestjs/common";
 import { ApiTags } from "@nestjs/swagger";
 import { RefreshTokenDto } from "./dto/refresh.token.dto";
 import { Token } from "./entities/token.entity";
@@ -10,9 +10,8 @@ export class TokenController{
     constructor(
         private tokenService: TokenService,
     ){}
-    @Put('refresh')
+    @Post('refresh')
     async refreshToken(@Body() data: RefreshTokenDto): Promise<any>{
-        console.log(data);
         return await this.tokenService.refreshToken(data.oldToken)
     }
 }
