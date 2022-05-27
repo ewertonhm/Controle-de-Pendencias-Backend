@@ -33,6 +33,7 @@ export class TokenService {
     let objToken = await this.model.findOne({where: {hash: oldToken}});
     if(objToken){
       let user = await this.userService.findOneByEmail(objToken.username);
+      console.log(user);
       return this.authService.login(user);
       
     } else { // é uma requisição invalida
