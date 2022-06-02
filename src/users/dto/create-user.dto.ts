@@ -35,6 +35,14 @@ export class CreateUserDto {
     })
     ativo: boolean;
 
+    @IsBoolean()
+    @IsOptional()
+    @ApiProperty({
+        required: false,
+        default: false
+    })
+    admin: boolean;
+
     @IsString()
     @IsOptional()
     @ApiProperty({
