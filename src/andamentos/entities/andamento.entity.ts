@@ -13,7 +13,7 @@ export class Andamento {
     @ManyToOne(() => Pendencia, pendencia => pendencia.id)
     pendencia: Pendencia;
 
-    @Column({length: 256})
+    @Column({length: 500})
     andamento: string;
 
     @CreateDateColumn()
